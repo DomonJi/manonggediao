@@ -13,7 +13,7 @@ def weixin_verify():
     nonce = request.args.get('nonce')
     echostr = request.args.get('echostr')
 
-    token = r'jixiaomeng' #和申请消息接口时的Token一致
+    token = 'jixiaomeng' #和申请消息接口时的Token一致
     tmplist = [token, timestamp, nonce]
     tmplist.sort()
     tmpstr = ''.join(tmplist)
