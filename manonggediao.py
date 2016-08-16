@@ -17,7 +17,7 @@ def weixin_verify():
     token = 'jixiaomeng' #和申请消息接口时的Token一致
     tmplist = [token, timestamp, nonce]
     tmplist.sort()
-    tmpstr = ''.join(tmplist)
+    tmpstr = ''.join([str(s) for s in tmpstr])
     hashstr = hashlib.sha1(tmpstr).hexdigest()
 
     if hashstr == signature:
