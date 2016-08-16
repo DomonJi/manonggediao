@@ -9,19 +9,19 @@ app.debug=True
 
 @app.route('/', methods=['GET'])
 def weixin_verify():
-    signature = str(request.args.get('signature'))
-    timestamp = str(request.args.get('timestamp'))
-    nonce = str(request.args.get('nonce'))
-    echostr = str(request.args.get('echostr'))
+    signature = request.args.get('signature')
+    timestamp = request.args.get('timestamp')
+    nonce = request.args.get('nonce')
+    echostr = request.args.get('echostr')
     token = 'jixiaomeng' #和申请消息接口时的Token一致
     tmplist = [token, timestamp, nonce]
     tmplist.sort()
-    tmpstr = ''.join(tmplist)
+    tmpstr = ''.join([str(s) for s in tmplist])
     hashstr = hashlib.sha1(tmpstr).hexdigest()
 
     if hashstr == signature:
         return make_response(echostr) #success
-    return 'access verification fail' + signature + echostr #fail
+    return 'access verification fail'#fail
 
 if __name__=='__main__':
     app.run()
