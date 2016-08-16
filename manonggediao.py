@@ -10,7 +10,7 @@ def index():
     return "Hello,World!"
 
 
-@app.route('/check',  methods=['GET', 'POST'])
+@app.route('/wechat',  methods=['GET', 'POST'])
 def check():
     if request.method == 'GET':
         token = r'jixiaomeng' # 这个根据自己的设置自行修改
