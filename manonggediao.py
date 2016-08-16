@@ -13,7 +13,6 @@ def weixin_verify():
     timestamp = request.args.get('timestamp')
     nonce = request.args.get('nonce')
     echostr = request.args.get('echostr')
-    print signature,timestamp,nonce,echostr
     token = 'jixiaomeng' #和申请消息接口时的Token一致
     tmplist = [token, timestamp, nonce]
     tmplist.sort()
@@ -22,7 +21,7 @@ def weixin_verify():
 
     if hashstr == signature:
         return make_response(echostr) #success
-    return 'access verification fail' #fail
+    return 'access verification fail' + signature + echostr #fail
 
 if __name__=='__main__':
     app.run()
