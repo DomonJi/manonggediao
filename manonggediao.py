@@ -19,7 +19,7 @@ def weixin_verify():
     tmpstr = ''.join([str(s) for s in tmplist])
     hashstr = hashlib.sha1(tmpstr).hexdigest()
 
-    return make_response(echostr)
+    return echostr
 
     if hashstr == signature:
         return make_response(echostr) #success
