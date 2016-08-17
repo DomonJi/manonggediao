@@ -7,10 +7,9 @@ if os.path.exists('.env'):
         var = line.strip().split('=')
         if len(var) == 2:
             os.environ[var[0]] = var[1]
-from manonggediao import create_app
+from manonggediao import app
 from flask.ext.script import Manager, Shell
 
-app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 manager = Manager(app)
 def make_shell_context():
     return dict(app=app)
