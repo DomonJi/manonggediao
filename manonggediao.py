@@ -2,9 +2,9 @@
 from flask import Flask, request, make_response
 from hashlib import sha1
 
+app = Flask(__name__)
 def create_app(config=None):
 
-    app = Flask(__name__)
     if config is not None:
         app.config.from_pyfile(config)
     # configure your app...
