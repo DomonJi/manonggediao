@@ -2,7 +2,13 @@
 from flask import Flask, request, make_response
 from hashlib import sha1
 
-app = Flask(__name__)
+def create_app(config=None):
+
+    app = Flask(__name__)
+    if config is not None:
+        app.config.from_pyfile(config)
+    # configure your app...
+    return app
 
 
 @app.route('/')
@@ -25,6 +31,3 @@ def check():
             return  make_response(echostr)
         else:
             return "Access denied."
-
-if __name__ == '__main__':
-    app.run()
