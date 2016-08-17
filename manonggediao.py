@@ -19,7 +19,7 @@ def index():
 @app.route('/wechat',  methods=['GET', 'POST'])
 def check():
     if request.method == 'GET':
-        token = r'jixiaomeng' # 这个根据自己的设置自行修改
+        token = r'8Murt0xLt1wfb6f2fTLvM2xonrgjup92' # 这个根据自己的设置自行修改
         signature = request.args.get('signature', '')
         echostr = request.args.get('echostr', '')
         timestamp = request.args.get('timestamp', '')
@@ -27,7 +27,7 @@ def check():
         tmp = [timestamp, nonce, token]
         tmp.sort()
         tmp = ''.join(tmp)
-        if signature == sha1(tmp).hexdigest():
+        if signature == sha1(tmp.encode('utf-8')).hexdigest():
             return  make_response(echostr)
         else:
             return "Access denied."
