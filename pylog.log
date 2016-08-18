@@ -1,0 +1,14 @@
+123123
+{'MsgType': 'text', 'ToUserName': 'gh_c006665bd2ed', 'FromUserName': 'okQuswOiMAjWMrGU7eCd1D17rS-c', 'CreateTime': '1471502229', 'Content': '测试'}NameError("name 'time' is not defined",)'123'
+'123'
+{'FromUserName': 'okQuswOiMAjWMrGU7eCd1D17rS-c', 'ToUserName': 'gh_c006665bd2ed', 'Content': '测试', 'MsgType': 'text', 'CreateTime': '1471502534'}
+'123''123'{'ToUserName': 'gh_c006665bd2ed', 'MsgType': 'text', 'Content': '测试', 'CreateTime': '1471502723', 'FromUserName': 'okQuswOiMAjWMrGU7eCd1D17rS-c'}{'ToUserName': 'gh_c006665bd2ed', 'MsgType': 'text', 'Content': '测试', 'CreateTime': '1471502728', 'FromUserName': 'okQuswOiMAjWMrGU7eCd1D17rS-c'}'123''123'{'ToUserName': 'gh_c006665bd2ed', 'Content': '测试啊', 'CreateTime': '1471503245', 'FromUserName': 'okQuswOiMAjWMrGU7eCd1D17rS-c', 'MsgType': 'text'}'<xml><ToUserName><![CDATA[gh_c006665bd2ed]]></ToUserName><FromUserName><![CDATA[manonggediao]]></FromUserName><CreateTime>1471503245</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[测试啊]]></Content></xml>''123'
+'123'
+{'CreateTime': '1471503897', 'ToUserName': 'gh_c006665bd2ed', 'Content': '啦啦', 'MsgType': 'text', 'FromUserName': 'okQuswOiMAjWMrGU7eCd1D17rS-c'}
+'<xml><ToUserName><![CDATA[gh_c006665bd2ed]]></ToUserName><FromUserName><![CDATA[manonggediao]]></FromUserName><CreateTime>1471503897</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[啦啦]]></Content></xml>'
+NameError("name 'msend_xml' is not defined",)
+'failed'
+'123'
+'123'
+{'ToUserName': 'gh_c006665bd2ed', 'CreateTime': '1471504012', 'MsgType': 'text', 'Content': '嗯嗯', 'FromUserName': 'okQuswOiMAjWMrGU7eCd1D17rS-c'}
+'<xml><ToUserName><![CDATA[gh_c006665bd2ed]]></ToUserName><FromUserName><![CDATA[manonggediao]]></FromUserName><CreateTime>1471504012</CreateTime><MsgType><![CDATA[text]]></MsgType><Content><![CDATA[嗯嗯]]></Content></xml>'
