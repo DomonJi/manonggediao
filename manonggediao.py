@@ -4,6 +4,7 @@ from hashlib import sha1
 from tokenManager import getToken
 from XMLHandler import parseRes,toxml
 from logger import log
+from recevieHandler import simsimi
 
 app = Flask(__name__)
 log('123')
@@ -33,7 +34,7 @@ def receive():
     dic = parseRes(request.data)
     log(dic)
     try:
-        send_xml = toxml(usrid=dic['FromUserName'],type='text',content=dic['Content'],from_usr_name=dic['ToUserName'])
+        send_xml = toxml(usrid=dic['FromUserName'],type='text',content=simsimi(dic['Content']),from_usr_name=dic['ToUserName'])
         log(send_xml)
         return send_xml
     except Exception as e:
