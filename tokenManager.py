@@ -1,30 +1,30 @@
-#coding:'utf-8'
+# coding:'utf-8'
 import httplib2
 import urllib
+import json
 import time
 
-appid = 'wxe83a5710c333d61f'
-appsecret = '879550783f2491fc45b295903bd6d3af'
+APPID = 'wxe83a5710c333d61f'
+SECRET = '879550783f2491fc45b295903bd6d3af'
 
 http = httplib2.Http()
 url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&'
-body = {
-    'appid' : appid,
-    'secret' : appsecret,
-}
 
-def encodeurl(url,body):
-    return url + 'appid='+appid+'&'+'secret'+'='+appsecret
+
+def encodeurl(url):
+    return url + 'appid=' + APPID + '&secret=' + SECRET
+
 
 def initToken():
     token = ''
     expires_in = 0
     acquired_time = None
-    def getToken(refresh = False):
-        nonlocal token,expires_in,acquired_time
-        if token and time.time()-acquired_time<expires_in and not refresh:
+
+    def getToken(refresh=False):
+        nonlocal token, expires_in, acquired_time
+        if token and time.time() - acquired_time < expires_in and not refresh:
             return token
-        response, content = http.request(encodeurl(url,body))
+        response, content = http.request(encodeurl(url))
         try:
             res = json.loads(content.decode())
             token = res['access_token']
@@ -36,4 +36,4 @@ def initToken():
         return token
     return getToken
 
-getToken=initToken()
+getToken = initToken()
