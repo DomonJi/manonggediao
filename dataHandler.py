@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 from recevieHandler import processs
+from logger import log
 import time
 
 
@@ -13,13 +14,24 @@ def data_handler(data):
 
     parsed = parse_res(data)
 
-    def toxml(processed):
+    def toxml(processed, msgtype):
         def wrap(t, c):
             return '<' + t + '><![CDATA[' + c + ']]></' + t + '>'
+        if msgtype == 'text':
+            return '<xml>' + wrap('ToUserName', parsed['FromUserName']) +\
+                wrap('FromUserName', parsed['ToUserName']) +\
+                wrap('CreateTime', str(int(time.time()))) +\
+                wrap('MsgType', 'Text') + wrap('Content', processed) + '</xml>'
+        if msgtype == 'films':
+            send = '<xml>' + wrap('ToUserName', parsed['FromUserName']) +\
+                wrap('FromUserName', parsed['ToUserName']) +\
+                wrap('CreateTime', str(int(time.time()))) +\
+                wrap('MsgType', 'news') + wrap('ArticleCount', '1') + '<Articles><item>' +\
+                wrap('Tiele', processed['title']) + wrap('Description', processed['desc']) + \
+                wrap('PicUrl', processed['pic']) + wrap('Url', processed['link']) + \
+                '</item></Articles>' + '</xml>'
+            log(send)
+            return send
 
-        return '<xml>' + wrap('ToUserName', parsed['FromUserName']) +\
-            wrap('FromUserName', parsed['ToUserName']) +\
-            wrap('CreateTime', str(int(time.time()))) +\
-            wrap('MsgType', 'Text') + wrap('Content', processed) + '</xml>'
-
-    return toxml(processs(parsed))
+    processed, msgtype = processs(parsed)
+    return toxml(processed, msgtype)
