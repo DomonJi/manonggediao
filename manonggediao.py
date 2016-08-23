@@ -5,7 +5,7 @@ from tokenManager import getToken
 # from XMLHandler import parseRes, toxml
 from dataHandler import data_handler
 from logger import log
-TOKEN = r'8Murt0xLt1wfb6f2fTLvM2xonrgjup92'
+from config import TOKEN
 
 app = Flask(__name__)
 

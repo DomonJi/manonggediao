@@ -3,9 +3,7 @@ import httplib2
 import urllib
 import json
 import time
-
-APPID = 'wxe83a5710c333d61f'
-SECRET = '879550783f2491fc45b295903bd6d3af'
+from config import APPID, SECRET
 
 http = httplib2.Http()
 url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&'

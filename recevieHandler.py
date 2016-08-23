@@ -1,22 +1,20 @@
 import httplib2
+import urllib
 import json
 from logger import log
-
-SIMSIMIKEY = 'bb53d7be-fce1-4315-b7da-46c8890b621f'
+from config import ROBOTKEY
 
 http = httplib2.Http()
 
 
 def processs(obj):
-    def simsimi(text, lc='zh'):
-        res_url = 'http://sandbox.api.simsimi.com/request.p?ft=1.0&key='
+    def answer():
+        url = 'http://op.juhe.cn/robot/index?key='
+        response, content = http.request(
+            url + ROBOTKEY + '&info=' + obj['Content'] + '&userid=' + obj['FromUserName'])
         try:
-            response, content = http.request(
-                res_url + SIMSIMIKEY + '&text=' + text + '&lc=' + lc)
             result = json.loads(content.decode())
-            return result['response']
-        except Exception as e:
-            log(e)
+            return result['result']['text']
+        except:
             return '我无法回答'
-
-    return simsimi(obj['Content'])
+    return answer()
