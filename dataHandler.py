@@ -17,6 +17,7 @@ def data_handler(data):
     def toxml(processed, msgtype):
         def wrap(t, c):
             return '<' + t + '><![CDATA[' + c + ']]></' + t + '>'
+
         if msgtype == 'text':
             return '<xml>' + wrap('ToUserName', parsed['FromUserName']) +\
                 wrap('FromUserName', parsed['ToUserName']) +\
@@ -27,8 +28,17 @@ def data_handler(data):
                 wrap('FromUserName', parsed['ToUserName']) +\
                 wrap('CreateTime', str(int(time.time()))) +\
                 wrap('MsgType', 'news') + wrap('ArticleCount', '1') + '<Articles><item>' +\
-                wrap('Tiele', processed['title']) + wrap('Description', processed['desc']) + \
-                wrap('PicUrl', processed['pic']) + wrap('Url', processed['link']) + \
+                wrap('Title', processed['title']) + wrap('Description', processed['desc']) + \
+                wrap('PicUrl', processed['pic']) + wrap('Url', processed['url']) + \
+                '</item></Articles>' + '</xml>'
+            log(send)
+            return send
+        if msgtype == 'qunar':
+            send = '<xml>' + wrap('ToUserName', parsed['FromUserName']) +\
+                wrap('FromUserName', parsed['ToUserName']) +\
+                wrap('CreateTime', str(int(time.time()))) +\
+                wrap('MsgType', 'news') + wrap('ArticleCount', '1') + '<Articles><item>' +\
+                wrap('Title', processed['title']) + wrap('Url', processed['url']) + \
                 '</item></Articles>' + '</xml>'
             log(send)
             return send

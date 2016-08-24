@@ -3,6 +3,7 @@ import urllib
 import json
 from logger import log
 from config import ROBOTKEY, FILMSKEY
+import re
 
 http = httplib2.Http()
 
@@ -19,7 +20,7 @@ def processs(parsed):
                 'title': result['title'],
                 'desc': result['desc'],
                 'pic': result['cover'],
-                'link': result['playlinks'].popitem()[1]
+                'url': result['playlinks'].popitem()[1]
             }, 'films'
         except Exception as e:
             log(e)
@@ -31,10 +32,16 @@ def processs(parsed):
             url + ROBOTKEY + '&info=' + text + '&userid=' + parsed['FromUserName'])
         try:
             result = json.loads(content.decode())
-            return result['result']['text'], 'text'
-        except:
+            result = result['result']
+            if 'url' in result:
+                return {
+                    'title': result['text'],
+                    'url': result['url']
+                }, 'qunar'
+            return result['text'], 'text'
+        except Exception as e:
+            log(e)
             return '我无法回答', 'text'
-
-    if parsed['Content'].startswith('影视 '):
-        return films(parsed['Content'].replace('影视 ', ''))
+    if re.match(r'^[?？]', parsed['Content']):
+        return films(re.sub(r'^[?？]', '', parsed['Content']).strip())
     return answer(parsed['Content'])
