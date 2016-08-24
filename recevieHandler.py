@@ -16,11 +16,15 @@ def processs(parsed):
         try:
             result = json.loads(content.decode())
             result = result['result']
+            links = result['playlinks']
             return {
                 'title': result['title'],
-                'desc': result['desc'],
+                'desc':  result['area'] + ' ' + result['tag'] + '\r\n' + result['act'] +
+                '\r\n年份:' + result['year'] + '  评分:' + str(result['rating']) + '\r\n导演:' +
+                result['dir'] + '\r\n' + result['desc'],
                 'pic': result['cover'],
-                'url': result['playlinks'].popitem()[1]
+                'url': links.popitem()[1] if links and links.popitem()[1] else
+                'http://m.iqiyi.com/search.html?key=' + query
             }, 'films'
         except Exception as e:
             log(e)
